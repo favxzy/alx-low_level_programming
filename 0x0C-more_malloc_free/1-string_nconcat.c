@@ -1,36 +1,51 @@
 #include "main.h"
-#include <stdlib.h>
-#include <stdio.h>
+
 /**
- * string_nconcat - concatenates two stringa.
- * @s1: string to be concatenated.
- * @s2: string to be concatenated.
- * @n: first bytes of s2.
- * Return: String concatenated.
+ * string_nconcat - concatenates two strings.
+ * @s1: first string
+ * @s2: second string
+ * @n: index
+ * Return: char pointer
  */
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-char *array = NULL;
-unsigned int i = 0, j = 0, k;
+	char *p;
+	unsigned int size1 = 0, size2 = 0, i;
 
-if (s1 == NULL)
-s1 = "";
-if (s2 == NULL)
-s2 = "";
-while (s1[i] != '\0')
-i++;
-while (s2[j] != '\0')
-j++;
-if (n < j)
-j = n;
-array = malloc(((i + j + n) * sizeof(char) + 1));
-if (array == NULL)
-return (NULL);
-for (k = 0; k < i; k++)
-array[k] = s1[k];
-i = k;
-for (k = 0; k < j; k++, i++)
-array[i] = s2[k];
-array[i] = '\0';
-return (array);
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	while (s1[size1] != '\0')
+	{
+		size1++;
+	}
+
+	while (s2[size2] != '\0')
+	{
+		size2++;
+	}
+
+	if (n > size2)
+	n = size2;
+	p = malloc((size1 + n + 1) * sizeof(char));
+
+	if (p == NULL)
+		return (0);
+
+	for (i = 0; i < size1; i++)
+	{
+		p[i] = s1[i];
+	}
+
+	for (; i < (size1 + n); i++)
+	{
+		p[i] = s2[i - size1];
+	}
+	p[i] = '\0';
+
+return (p);
 }

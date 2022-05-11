@@ -1,0 +1,1 @@
+Structures typedef read me

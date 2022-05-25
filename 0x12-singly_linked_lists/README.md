@@ -1,1 +1,0 @@
-Singlt linked list readme
